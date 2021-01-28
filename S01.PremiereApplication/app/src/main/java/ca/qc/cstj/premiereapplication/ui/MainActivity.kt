@@ -1,10 +1,12 @@
-package ca.qc.cstj.premiereapplication
+package ca.qc.cstj.premiereapplication.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import ca.qc.cstj.premiereapplication.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +22,15 @@ class MainActivity : AppCompatActivity() {
         val btnShow = findViewById<Button>(R.id.btnShow)
         val edtMessage = findViewById<EditText>(R.id.edtMessage)
 
+        //Évenement sur le clic du bouton
         btnShow.setOnClickListener {
             //Toast = affiche un popup avec le text (2e paramètre)
             //val message = edtMessage.text.toString()
-            Toast.makeText(this, edtMessage.text.toString(), Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, edtMessage.text.toString(), Toast.LENGTH_LONG).show()
+
+            //TODO: Démarrer l'NumberActivity
+            val intent = Intent(this, NumberActivity::class.java)
+            startActivity(intent)
         }
 
     }
