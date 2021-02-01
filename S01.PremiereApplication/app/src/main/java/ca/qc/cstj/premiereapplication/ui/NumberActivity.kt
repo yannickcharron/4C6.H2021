@@ -30,9 +30,9 @@ class NumberActivity : AppCompatActivity() {
         //Ajouter les nombres 0 à 100 dans le numberPicker
         //minValue = 0 par default
         binding.nprNumber.maxValue = 100
-        binding.txvAttempts.text = "Il reste ${(MAX_ATTEMPTS - attempts)} essais"
         binding.txvPlayer.text = getString(R.string.number_guest_text, intent.getStringExtra(INTENT_EXTRA_PLAYER_NAME))
-
+        binding.txvAttempts.text = resources.getQuantityString(R.plurals.number_attempts, MAX_ATTEMPTS - attempts, MAX_ATTEMPTS-attempts)
+        //binding.txvAttempts.text = "Il reste ${(MAX_ATTEMPTS - attempts)} essais"
         //binding.txvPlayer.text = "Devines le nombre ${intent.getStringExtra(INTENT_EXTRA_PLAYER_NAME)}"
 
         //TODO: Choisir un nombre au hasard
@@ -58,12 +58,12 @@ class NumberActivity : AppCompatActivity() {
             if (attempts == MAX_ATTEMPTS - 1) {
                 Toast.makeText(this, "Vous avez perdu!!!", Toast.LENGTH_LONG).show()
                 binding.btnTry.visibility = View.INVISIBLE
-                finish()
+                //finish()
             } else if (attempts == MAX_ATTEMPTS - 2) {
                 binding.txvAttempts.setTextColor(Color.RED)
             }
             attempts++
-            binding.txvAttempts.text = "Il reste ${(MAX_ATTEMPTS - attempts)} essais"
+            binding.txvAttempts.text = resources.getQuantityString(R.plurals.number_attempts, MAX_ATTEMPTS-attempts, MAX_ATTEMPTS-attempts)
 
 //            val x = 4
 //            val validNumbers = listOf(0, 4, 6)
@@ -73,7 +73,6 @@ class NumberActivity : AppCompatActivity() {
 //                !in 10..20 -> println("x is outside the range")
 //                else -> println("none of the above")
 //            }
-
 
         }
 

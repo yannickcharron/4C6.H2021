@@ -1,6 +1,7 @@
 package ca.qc.cstj.premiereapplication.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -21,6 +22,20 @@ class MainActivity : AppCompatActivity() {
         //findViewById retrouve un contrôle (view) avec le id passé en paramètre
         val btnShow = findViewById<Button>(R.id.btnShow)
         val edtMessage = findViewById<EditText>(R.id.edtMessage)
+        val btnPhone = findViewById<Button>(R.id.btnPhone)
+        val btnSMS = findViewById<Button>(R.id.btnSMS)
+
+
+        btnPhone.setOnClickListener {
+            val phoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:450-436-1580"))
+            startActivity(phoneIntent)
+        }
+
+        btnSMS.setOnClickListener {
+            val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:450-436-2195"))
+            smsIntent.putExtra("sms_body","Bonjour de mon application Android")
+            startActivity(smsIntent)
+        }
 
         //Évenement sur le clic du bouton
         btnShow.setOnClickListener {
@@ -29,8 +44,11 @@ class MainActivity : AppCompatActivity() {
             //Toast.makeText(this, edtMessage.text.toString(), Toast.LENGTH_LONG).show()
 
             //Démarrer l'NumberActivity
-            val intent = NumberActivity.newIntent(this, edtMessage.text.toString())
+            //val intent = NumberActivity.newIntent(this, edtMessage.text.toString())
+            val intent = Intent(this, LifecycleActivity::class.java)
             startActivity(intent)
+
+
         }
 
     }

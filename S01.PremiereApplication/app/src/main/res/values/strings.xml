@@ -3,4 +3,10 @@
     <string name="main_btnAfficher">Afficher</string>
     <string name="number_guest_text">Devines le nombre %s</string>
     <string name="number_try">Essayer</string>
+    <string name="main_btnPhone">Phone</string>
+    <string name="main_btnSms">SMS</string>
+    <plurals name="number_attempts">
+        <item quantity="one">Il reste %d essai</item>
+        <item quantity="other">Il reste %d essais</item>
+    </plurals>
 </resources>
