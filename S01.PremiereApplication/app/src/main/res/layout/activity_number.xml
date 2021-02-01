@@ -10,9 +10,20 @@
     tools:context=".ui.NumberActivity">
 
     <TextView
+        android:id="@+id/txvPlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/number_guest_text"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txvAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Nombre d'essais: 5"
         android:textSize="30sp"
         android:textAlignment="center"
         android:textStyle="bold"

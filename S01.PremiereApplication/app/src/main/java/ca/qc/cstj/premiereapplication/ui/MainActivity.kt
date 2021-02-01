@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
             //val message = edtMessage.text.toString()
             //Toast.makeText(this, edtMessage.text.toString(), Toast.LENGTH_LONG).show()
 
-            //TODO: Démarrer l'NumberActivity
-            val intent = Intent(this, NumberActivity::class.java)
+            //Démarrer l'NumberActivity
+            val intent = NumberActivity.newIntent(this, edtMessage.text.toString())
             startActivity(intent)
         }
 
