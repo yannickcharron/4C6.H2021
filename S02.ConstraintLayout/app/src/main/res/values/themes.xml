@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/fuel_town</item>
+        <item name="android:textColor">@color/double_dragon_skin</item>
+
     </style>
 </resources>
