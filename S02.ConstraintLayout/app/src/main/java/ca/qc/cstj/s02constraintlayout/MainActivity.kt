@@ -11,6 +11,7 @@ import ca.qc.cstj.s02constraintlayout.databinding.ActivityMainBinding
 import ca.qc.cstj.s02constraintlayout.helpers.notifyObserver
 import ca.qc.cstj.s02constraintlayout.models.Pilot
 import ca.qc.cstj.s02constraintlayout.models.Rocket
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         //Quand la rocket est modifiée
         rocket.observe(this, {
             binding.txvPilot.text = it.pilot.name
-            binding.txvLevel.text = it.pilot.level.toString()
+            binding.txvLevel.text = getString(R.string.level, it.pilot.level)
             binding.txvLife.text = it.pilot.life.toString()
             binding.txvShield.text = it.shield.toString()
             binding.txvEnergy.text = it.energy.toString()
@@ -39,30 +40,39 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnStart.setOnClickListener {
 
-            val layoutParams = binding.imvRocketExercice.layoutParams as ConstraintLayout.LayoutParams
-            val startAngle = layoutParams.circleAngle
-            val endAngle = startAngle - 360
+            if (_rocket.energy > 0) {
+                val layoutParams = binding.imvRocketExercice.layoutParams as ConstraintLayout.LayoutParams
+                val startAngle = layoutParams.circleAngle
+                val endAngle = startAngle - 360
 
-            val animation = ValueAnimator.ofFloat(startAngle, endAngle)
-            animation.repeatCount = binding.sldRevolution.value.toInt() - 1
-            animation.duration = 2000
-            animation.interpolator = LinearInterpolator()
-            animation.addUpdateListener { valueAnimator ->
+                val animation = ValueAnimator.ofFloat(startAngle, endAngle)
+                animation.repeatCount = binding.sldRevolution.value.toInt() - 1
+                animation.duration = 2000
+                animation.interpolator = LinearInterpolator()
+                animation.addUpdateListener { valueAnimator ->
 
-                val animatedValue = valueAnimator.animatedValue as Float
-                val layoutParamsAnim = binding.imvRocketExercice.layoutParams as ConstraintLayout.LayoutParams
-                layoutParamsAnim.circleAngle = animatedValue
-                binding.imvRocketExercice.layoutParams = layoutParamsAnim
-                binding.imvRocketExercice.rotation = (animatedValue % 360 - 90)
+                    val animatedValue = valueAnimator.animatedValue as Float
+                    val layoutParamsAnim = binding.imvRocketExercice.layoutParams as ConstraintLayout.LayoutParams
+                    layoutParamsAnim.circleAngle = animatedValue
+                    binding.imvRocketExercice.layoutParams = layoutParamsAnim
+                    binding.imvRocketExercice.rotation = (animatedValue % 360 - 90)
 
+                }
+
+                animation.doOnEnd {
+                    _rocket.start(binding.sldRevolution.value.toInt(), binding.swtTraining.isChecked)
+                    rocket.notifyObserver()
+                }
+                animation.start()
+            } else {
+
+                Snackbar.make(it, R.string.low_energy, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.recharge) {
+                        _rocket.energy = 5
+                        rocket.notifyObserver()
+                    }
+                    .show()
             }
-
-            animation.doOnEnd {
-                _rocket.start(binding.sldRevolution.value.toInt(), binding.swtTraining.isChecked)
-                rocket.notifyObserver()
-            }
-            animation.start()
-
 
 
         }

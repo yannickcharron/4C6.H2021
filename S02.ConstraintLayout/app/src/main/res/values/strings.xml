@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">S02ConstraintLayout</string>
+    <string name="app_name" translatable="false">S02ConstraintLayout</string>
     <string name="exercice_cube">Cube</string>
     <string name="exercice_energy">Energy</string>
     <string name="exercice_shield">Shield</string>
@@ -7,4 +7,7 @@
     <string name="training">Training</string>
     <string name="life">Life</string>
     <string name="revolution">Revolution</string>
+    <string name="level">Level %d</string>
+    <string name="low_energy">Low Energy</string>
+    <string name="recharge">Recharge</string>
 </resources>
