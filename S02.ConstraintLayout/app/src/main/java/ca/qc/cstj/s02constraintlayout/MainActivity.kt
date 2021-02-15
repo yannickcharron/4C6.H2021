@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
             val animation = ValueAnimator.ofFloat(startAngle, endAngle)
             animation.repeatCount = binding.sldRevolution.value.toInt() - 1
-            animation.duration = 5000
+            animation.duration = 2000
             animation.interpolator = LinearInterpolator()
             animation.addUpdateListener { valueAnimator ->
 
