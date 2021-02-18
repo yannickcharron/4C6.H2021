@@ -9,13 +9,14 @@ class PlanetRepository {
 
     fun retrieveAll() : LiveData<List<Planet>> {
 
-        val amountToGenerate = Random.nextInt(0, 21)
+        val amountToGenerate = Random.nextInt(15, 31)
         val planets = mutableListOf<Planet>()
 
         for (i in 0..amountToGenerate) {
-            val planetImage = Random.nextInt(1, 7)
+            val planetImage = Random.nextInt(1, 25) //remettre 7 avec la ligne 18
             val temperature = Random.nextDouble(0.0, 60.0)
-            val planet = Planet("Planet $i", "planet$planetImage", temperature)
+            //val planet = Planet("Planet $i", "planet$planetImage", temperature)
+            val planet = Planet("Planet $i", "$planetImage.png" ,temperature)
 
             planets.add(planet)
         }
