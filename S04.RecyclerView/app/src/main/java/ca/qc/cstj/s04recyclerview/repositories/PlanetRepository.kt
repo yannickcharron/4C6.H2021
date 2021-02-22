@@ -3,11 +3,13 @@ package ca.qc.cstj.s04recyclerview.repositories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ca.qc.cstj.s04recyclerview.models.Planet
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlin.random.Random
 
 class PlanetRepository {
 
-    fun retrieveAll() : LiveData<List<Planet>> {
+    fun retrieveAll() : Flow<List<Planet>> {
 
         val amountToGenerate = Random.nextInt(15, 31)
         val planets = mutableListOf<Planet>()
@@ -21,10 +23,9 @@ class PlanetRepository {
             planets.add(planet)
         }
 
-        //val results = MutableLiveData<List<Planet>>()
-        //results.postValue(planets)
-        //return results
-        return MutableLiveData<List<Planet>>().apply { postValue(planets) }
+       return flow {
+           emit(planets)
+       }
 
     }
 

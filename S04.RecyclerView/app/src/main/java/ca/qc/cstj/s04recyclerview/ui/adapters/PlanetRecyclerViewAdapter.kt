@@ -3,6 +3,7 @@ package ca.qc.cstj.s04recyclerview.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ca.qc.cstj.s04recyclerview.R
@@ -14,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 
-class PlanetRecyclerViewAdapter(var planets:List<Planet>) :
+class PlanetRecyclerViewAdapter(var planets:List<Planet>, private val onPlanetListener: OnPlanetListener) :
     RecyclerView.Adapter<PlanetRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var circularProgressDrawable: CircularProgressDrawable
@@ -36,6 +37,10 @@ class PlanetRecyclerViewAdapter(var planets:List<Planet>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val planet = planets[position]
         holder.bind(planet)
+        holder.itemView.setOnClickListener {
+            //Toast.makeText(holder.itemView.context, planet.name, Toast.LENGTH_LONG).show()
+            onPlanetListener.onClick(planet)
+        }
     }
 
     override fun getItemCount(): Int = planets.size
@@ -59,9 +64,12 @@ class PlanetRecyclerViewAdapter(var planets:List<Planet>) :
                 .load("${Services.IMAGE_URL}${planet.image}")
                 .into(binding.imvImagePlanet)
 
-
         }
 
+    }
+
+    interface OnPlanetListener {
+        fun onClick(planet: Planet)
     }
 
 }
