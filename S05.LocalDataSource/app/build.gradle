@@ -56,12 +56,14 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     //Datastore
-    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha06"
-
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha07"
 
     //Coroutines & Flow & Lifecycle (LiveData)
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
 
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 
 }

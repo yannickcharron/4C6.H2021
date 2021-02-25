@@ -5,7 +5,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.createDataStore
 import ca.qc.cstj.s05localdatasource.MyApplication
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -14,6 +13,6 @@ import java.io.IOException
 
 object LocalStorage {
 
-    val dataStore = MyApplication.appContext.createDataStore(name = "exemple.localstorage")
+    //val dataStore = MyApplication.appContext.createDataStore(name = "exemple.localstorage")
 
 }
