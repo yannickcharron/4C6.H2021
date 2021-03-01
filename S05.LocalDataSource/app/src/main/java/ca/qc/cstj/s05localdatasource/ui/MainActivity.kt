@@ -1,5 +1,7 @@
 package ca.qc.cstj.s05localdatasource.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.asLiveData
@@ -59,5 +61,11 @@ class MainActivity : AppCompatActivity(), ContactRecyclerViewAdapter.OnContactLi
 
     override fun onSwipeLeft(contact: Contact) {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 }
