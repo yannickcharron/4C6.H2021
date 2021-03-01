@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ca.qc.cstj.s05localdatasource.R
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity(), ContactRecyclerViewAdapter.OnContactLi
         binding.rcvContact.layoutManager = LinearLayoutManager(this)
         //binding.rcvContact.layoutManager = GridLayoutManager(this, 2)
 
-        //TODO: touchCallBack
+        //touchCallBack
+        val touchCallback = ItemTouchHelper(contactRecyclerViewAdapter.itemTouchHelperCallback)
+        touchCallback.attachToRecyclerView(binding.rcvContact)
 
         AppDatabase.getInstance(this).contactRepository().retrieveAll().asLiveData().observe(this, {
             contactRecyclerViewAdapter.contacts = it
@@ -60,7 +63,14 @@ class MainActivity : AppCompatActivity(), ContactRecyclerViewAdapter.OnContactLi
     }
 
     override fun onSwipeLeft(contact: Contact) {
-        TODO("Not yet implemented")
+
+        //Update
+        //Faire les modifications
+        contact.firstName = "Rémi"
+        contact.isOnline = !contact.isOnline
+        lifecycleScope.launch {
+            AppDatabase.getInstance(this@MainActivity).contactRepository().update(contact)
+        }
     }
 
     companion object {

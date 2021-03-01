@@ -3,6 +3,7 @@ package ca.qc.cstj.s05localdatasource.repositories
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import ca.qc.cstj.s05localdatasource.models.Contact
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,6 +22,9 @@ interface ContactRepository {
 
     @Query("DELETE FROM Contacts WHERE idContact=:idContact")
     suspend fun delete(idContact: Int)
+
+    @Update
+    suspend fun update(contact:Contact)
 
 }
 

@@ -12,6 +12,8 @@ import ca.qc.cstj.s05localdatasource.models.Contact
 
 class ContactRecyclerViewAdapter(var contacts: List<Contact>, private val onContactListener: OnContactListener) : RecyclerView.Adapter<ContactRecyclerViewAdapter.ViewHolder>() {
 
+    val itemTouchHelperCallback = ContactItemTouchHelper()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false)
 
