@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/bottom_navigation"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ca.qc.cstj.s07bottomnavigation.ui.search.SearchFragment"
+        android:label="@string/search" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="ca.qc.cstj.s07bottomnavigation.ui.favorites.FavoritesFragment"
+        android:label="@string/favorites" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ca.qc.cstj.s07bottomnavigation.ui.settings.SettingsFragment"
+        android:label="@string/settings" />
+</navigation>
