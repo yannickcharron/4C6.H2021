@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import ca.qc.cstj.s07bottomnavigation.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -16,8 +14,6 @@ class SettingsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by activityViewModels<SettingsViewModel>()
-
-    //private var count = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
